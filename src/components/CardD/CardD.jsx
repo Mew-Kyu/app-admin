@@ -21,9 +21,9 @@ export const CardD = () => {
         <Col span={8}>
           <Card
             style={{
-              backgroundColor: "#85FFBD",
+              backgroundColor: "#F4D03F",
               backgroundImage:
-                "linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+                "linear-gradient(132deg, #F4D03F 0%, #16A085 100%)",
               color: "#fff",
             }}
             bordered={false}

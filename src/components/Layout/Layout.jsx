@@ -8,10 +8,10 @@ import {
   ShoppingCartOutlined,
   ThunderboltOutlined,
 } from "@ant-design/icons";
-import { Helmet } from "react-helmet";
 import { Button, Layout, Menu, theme } from "antd";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 const { Header, Sider } = Layout;
 
 const PrimaryLayout = ({ children, title }) => {
