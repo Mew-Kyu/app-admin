@@ -1,5 +1,6 @@
 import { PrimaryLayout } from "components/Layout";
-import { Layout, theme } from "antd";
+import { Col, Layout, Row, theme } from "antd";
+import { CardD } from "components/CardD";
 const { Content } = Layout;
 const Dashboard = () => {
   const {
@@ -7,7 +8,7 @@ const Dashboard = () => {
   } = theme.useToken();
   return (
     <>
-      <PrimaryLayout>
+      <PrimaryLayout title={"Dashboard"}>
         <Content
           style={{
             margin: "24px 16px",
@@ -16,7 +17,14 @@ const Dashboard = () => {
             background: colorBgContainer,
           }}
         >
-          Dashboard
+          <Row>
+            <Col span={24}>
+              <CardD />
+            </Col>
+            <Col span={24}>
+              {/* <ChartD /> */}
+            </Col>
+          </Row>
         </Content>
       </PrimaryLayout>
     </>

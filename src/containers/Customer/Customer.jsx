@@ -7,7 +7,7 @@ const Customer = () => {
   } = theme.useToken();
   return (
     <>
-      <PrimaryLayout>
+      <PrimaryLayout title={"Customer"}>
         <Content
           style={{
             margin: "24px 16px",

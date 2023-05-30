@@ -7,7 +7,7 @@ const Coupon = () => {
   } = theme.useToken();
   return (
     <>
-      <PrimaryLayout>
+      <PrimaryLayout title={"Coupon"}>
         <Content
           style={{
             margin: "24px 16px",

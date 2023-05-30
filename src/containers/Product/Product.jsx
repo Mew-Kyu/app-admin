@@ -7,7 +7,7 @@ const Product = () => {
   } = theme.useToken();
   return (
     <>
-      <PrimaryLayout>
+      <PrimaryLayout title={"Product"}>
         <Content
           style={{
             margin: "24px 16px",
