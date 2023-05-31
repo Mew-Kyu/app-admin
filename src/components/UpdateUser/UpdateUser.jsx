@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal, Form, Input } from "antd";
 
 export const UpdateUser = ({
@@ -34,7 +33,7 @@ export const UpdateUser = ({
   return (
     <Modal
       title="Edit User:"
-      visible={isEditing}
+      open={isEditing}
       okText="Save"
       onCancel={resetEditing}
       onOk={handleSave}

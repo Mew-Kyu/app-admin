@@ -1,54 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   DeleteOutlined,
   EditOutlined,
   UserSwitchOutlined,
   ExclamationCircleFilled,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import { PrimaryLayout } from "components/Layout";
 import { Layout, theme, Space, Table, Tag, Button, Modal } from "antd";
 import AddUser from "components/AddUser";
 import UpdateUser from "components/UpdateUser";
-
+import { useDispatch, useSelector } from "react-redux";
 const { Content } = Layout;
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    username: "johnau",
-    email: "johnau@gmail.com",
-    phone: "0" + 969789654,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    username: "jimxanh",
-    email: "jimxanh@gmail.com",
-    phone: "0" + 869789651,
-    address: "London No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    username: "joeden",
-    email: "joeden@gmail.com",
-    phone: "0" + 769786652,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    username: "jimdo",
-    email: "jimdo@gmail.com",
-    address: "London No. 2 Lake Park",
-    tags: ["loser"],
-  },
-];
 
 const UserPage = () => {
   const {
@@ -63,19 +26,23 @@ const UserPage = () => {
     setIsModalOpen(false);
   };
 
-  const [users, setUsers] = useState(data);
+  const dispatch = useDispatch();
+  const usersStore = useSelector((state) => state.users);
 
   const onFinish = (values) => {
-    const newUser = {
-      key: (users.length + 1).toString(),
-      name: values.user.name,
-      username: values.user.username,
-      email: values.user.email,
-      phone: values.user.phone,
-      address: values.user.address,
-      tags: ["nice", "developer"],
-    };
-    setUsers([...users, newUser]);
+    const newUser = [
+      ...usersStore.listUser,
+      {
+        key: (usersStore.length + 1).toString(),
+        name: values.user.name,
+        username: values.user.username,
+        email: values.user.email,
+        phone: values.user.phone,
+        address: values.user.address,
+        tags: ["nice", "developer"],
+      },
+    ];
+    dispatch.users.setListUser(newUser);
     setIsModalOpen(false);
   };
 
@@ -85,8 +52,10 @@ const UserPage = () => {
       title: "Do you want to delete this user?",
       icon: <ExclamationCircleFilled />,
       onOk() {
-        const updatedUsers = users.filter((user) => user.key !== record.key);
-        setUsers(updatedUsers);
+        const updatedUsers = usersStore.listUser.filter(
+          (user) => user.key !== record.key
+        );
+        dispatch.users.setListUser(updatedUsers);
       },
     });
   };
@@ -102,15 +71,14 @@ const UserPage = () => {
     setEditingUser(null);
   };
   const saveEditingUser = () => {
-    setUsers((prevUser) =>
-      prevUser.map((user) => {
-        if (user.key === editingUser.key) {
-          return editingUser;
-        } else {
-          return user;
-        }
-      })
-    );
+    const updatedUsers = usersStore.listUser.map((user) => {
+      if (user.key === editingUser.key) {
+        return editingUser;
+      } else {
+        return user;
+      }
+    });
+    dispatch.users.setListUser(updatedUsers);
   };
 
   const onChange = (pagination, filters, sorter, extra) => {
@@ -129,7 +97,7 @@ const UserPage = () => {
           }}
         >
           <Button onClick={showModal} type="primary">
-            Add User
+            <UserAddOutlined /> Add User
           </Button>
           <Table
             style={{ overflow: "auto" }}
@@ -200,7 +168,7 @@ const UserPage = () => {
                 ),
               },
             ]}
-            dataSource={users}
+            dataSource={usersStore.listUser}
             onChange={onChange}
           />
         </Content>

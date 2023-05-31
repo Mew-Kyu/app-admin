@@ -7,8 +7,8 @@ import Product from 'containers/Product';
 import Order from 'containers/Order';
 import Coupon from 'containers/Coupon';
 import NotFound from 'containers/404';
-import { Routes, Route } from "react-router-dom";
-import { PrimaryLayout } from 'components/Layout';
+// import { Routes, Route } from "react-router-dom";
+// import { PrimaryLayout } from 'components/Layout';
 function App() {
   return useRoutes([
     { path: "/", element: <Dashboard />,},
