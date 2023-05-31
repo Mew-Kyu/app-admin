@@ -6,11 +6,11 @@ import {
   ExclamationCircleFilled,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { PrimaryLayout } from "components/Layout";
 import { Layout, theme, Space, Table, Tag, Button, Modal } from "antd";
 import AddUser from "components/AddUser";
 import UpdateUser from "components/UpdateUser";
 import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 const { Content } = Layout;
 
 const UserPage = () => {
@@ -87,104 +87,105 @@ const UserPage = () => {
 
   return (
     <>
-      <PrimaryLayout title={"User"}>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          <Button onClick={showModal} type="primary">
-            <UserAddOutlined /> Add User
-          </Button>
-          <Table
-            style={{ overflow: "auto" }}
-            columns={[
-              {
-                title: "Name",
-                dataIndex: "name",
-                sorter: (a, b) => a.name.length - b.name.length,
-                sortDirections: ["descend"],
-              },
-              {
-                title: "Tags",
-                key: "tags",
-                dataIndex: "tags",
-                render: (tags) => (
-                  <>
-                    {tags.map((tag) => {
-                      let color = tag.length > 5 ? "geekblue" : "green";
-                      if (tag === "loser") {
-                        color = "volcano";
-                      }
-                      return (
-                        <Tag color={color} key={tag}>
-                          {tag.toUpperCase()}
-                        </Tag>
-                      );
-                    })}
-                  </>
-                ),
-              },
-              {
-                title: "Username",
-                dataIndex: "username",
-                sorter: (a, b) => a.username.length - b.username.length,
-                sortDirections: ["descend"],
-              },
-              {
-                title: "Email",
-                dataIndex: "email",
-                sorter: (a, b) => a.email.localeCompare(b.email),
-                sortDirections: ["descend", "ascend"],
-              },
-              {
-                title: "Phone Number",
-                dataIndex: "phone",
-                defaultSortOrder: "descend",
-                sorter: (a, b) => a.phone - b.phone,
-              },
-              {
-                title: "Address",
-                dataIndex: "address",
-              },
-              {
-                title: "Action",
-                key: "action",
-                render: (text, record) => (
-                  <Space size="middle">
-                    <UserSwitchOutlined style={{ color: "blueviolet" }} />
-                    <EditOutlined
-                      onClick={() => onEditUser(record)}
-                      style={{ color: "yellowgreen" }}
-                    />
-                    <DeleteOutlined
-                      onClick={() => showConfirmDelete(record)}
-                      style={{ color: "red" }}
-                    />
-                  </Space>
-                ),
-              },
-            ]}
-            dataSource={usersStore.listUser}
-            onChange={onChange}
-          />
-        </Content>
-        <AddUser
-          isModalOpen={isModalOpen}
-          handleCancel={handleCancel}
-          onFinish={onFinish}
+      <Helmet>
+        <title>User</title>
+      </Helmet>
+      <Content
+        style={{
+          margin: "24px 16px",
+          padding: 24,
+          minHeight: 280,
+          background: colorBgContainer,
+        }}
+      >
+        <Button onClick={showModal} type="primary">
+          <UserAddOutlined /> Add User
+        </Button>
+        <Table
+          style={{ overflow: "auto" }}
+          columns={[
+            {
+              title: "Name",
+              dataIndex: "name",
+              sorter: (a, b) => a.name.length - b.name.length,
+              sortDirections: ["descend"],
+            },
+            {
+              title: "Tags",
+              key: "tags",
+              dataIndex: "tags",
+              render: (tags) => (
+                <>
+                  {tags.map((tag) => {
+                    let color = tag.length > 5 ? "geekblue" : "green";
+                    if (tag === "loser") {
+                      color = "volcano";
+                    }
+                    return (
+                      <Tag color={color} key={tag}>
+                        {tag.toUpperCase()}
+                      </Tag>
+                    );
+                  })}
+                </>
+              ),
+            },
+            {
+              title: "Username",
+              dataIndex: "username",
+              sorter: (a, b) => a.username.length - b.username.length,
+              sortDirections: ["descend"],
+            },
+            {
+              title: "Email",
+              dataIndex: "email",
+              sorter: (a, b) => a.email.localeCompare(b.email),
+              sortDirections: ["descend", "ascend"],
+            },
+            {
+              title: "Phone Number",
+              dataIndex: "phone",
+              defaultSortOrder: "descend",
+              sorter: (a, b) => a.phone - b.phone,
+            },
+            {
+              title: "Address",
+              dataIndex: "address",
+            },
+            {
+              title: "Action",
+              key: "action",
+              render: (text, record) => (
+                <Space size="middle">
+                  <UserSwitchOutlined style={{ color: "blueviolet" }} />
+                  <EditOutlined
+                    onClick={() => onEditUser(record)}
+                    style={{ color: "yellowgreen" }}
+                  />
+                  <DeleteOutlined
+                    onClick={() => showConfirmDelete(record)}
+                    style={{ color: "red" }}
+                  />
+                </Space>
+              ),
+            },
+          ]}
+          dataSource={usersStore.listUser}
+          onChange={onChange}
         />
-        <UpdateUser
-          isEditing={isEditing}
-          editingUser={editingUser}
-          resetEditing={resetEditing}
-          setEditingUser={setEditingUser}
-          saveEditingUser={saveEditingUser}
-        />
-      </PrimaryLayout>
+      </Content>
+      <AddUser
+        isModalOpen={isModalOpen}
+        handleCancel={handleCancel}
+        onFinish={onFinish}
+      />
+      <UpdateUser
+        isEditing={isEditing}
+        editingUser={editingUser}
+        resetEditing={resetEditing}
+        setEditingUser={setEditingUser}
+        saveEditingUser={saveEditingUser}
+      />
     </>
   );
 };

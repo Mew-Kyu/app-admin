@@ -1,5 +1,5 @@
-import { PrimaryLayout } from "components/Layout";
 import { Layout, theme } from "antd";
+import { Helmet } from "react-helmet";
 const { Content } = Layout;
 const Coupon = () => {
   const {
@@ -7,18 +7,19 @@ const Coupon = () => {
   } = theme.useToken();
   return (
     <>
-      <PrimaryLayout title={"Coupon"}>
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-          }}
-        >
-          Coupon
-        </Content>
-      </PrimaryLayout>
+      <Helmet>
+        <title>Coupon</title>
+      </Helmet>
+      <Content
+        style={{
+          margin: "24px 16px",
+          padding: 24,
+          minHeight: 280,
+          background: colorBgContainer,
+        }}
+      >
+        Coupon
+      </Content>
     </>
   );
 };

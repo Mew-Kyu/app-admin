@@ -1,17 +1,35 @@
 export const customers = {
-  state: 0, // initial state
+  state: {
+    listCustomer: [],
+    count: 0,
+  }, // initial state
   reducers: {
     // handle state changes with pure functions
-    increment(state, payload) {
-      return state + payload;
+    setListCustomer(state, listCustomer) {
+      return {
+        ...state,
+        listCustomer,
+      };
+    },
+    setCount(state, count) {
+      return {
+        ...state,
+        count,
+      };
     },
   },
   effects: (dispatch) => ({
     // handle state changes with impure functions.
     // use async/await for async actions
-    async incrementAsync(payload, rootState) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      dispatch.count.increment(payload);
+    async fetchCustomers() {
+      const data = await fetch('https://dummyjson.com/users')
+      .then((response) => response.json());
+      this.setListCustomer(data);
+    },
+  }),
+  selectors: (slice, createSelector) => ({
+    selectCount() {
+      return slice((state) => state.count);
     },
   }),
 };
