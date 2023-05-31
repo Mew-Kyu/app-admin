@@ -21,9 +21,7 @@ const Dashboard = () => {
             <Col span={24}>
               <CardD />
             </Col>
-            <Col span={24}>
-              {/* <ChartD /> */}
-            </Col>
+            <Col span={24}>{/* <ChartD /> */}</Col>
           </Row>
         </Content>
       </PrimaryLayout>
