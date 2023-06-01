@@ -22,7 +22,7 @@ export const customers = {
     // handle state changes with impure functions.
     // use async/await for async actions
     async fetchCustomers() {
-      const data = await fetch('https://dummyjson.com/users')
+      const data = await fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json());
       this.setListCustomer(data);
     },

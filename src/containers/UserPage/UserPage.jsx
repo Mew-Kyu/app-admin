@@ -102,7 +102,7 @@ const UserPage = () => {
           <UserAddOutlined /> Add User
         </Button>
         <Table
-          style={{ overflow: "auto" }}
+          style={{ overflow: "auto", marginTop: "20px" }}
           columns={[
             {
               title: "Name",
