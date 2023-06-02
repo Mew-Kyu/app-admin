@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Modal, Space, Table, theme } from "antd";
 import { AddProduct } from "components/AddProduct/AddProduct";
+import { EditProduct } from "components/EditProduct/EditProduct";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,7 +72,7 @@ const Product = () => {
   };
   const saveEditingProduct = () => {
     const updatedProducts = productsStore.listProduct.map((product) => {
-      if (product.key === editingProduct.key) {
+      if (product.title === editingProduct.title) {
         return editingProduct;
       } else {
         return product;
@@ -91,6 +92,7 @@ const Product = () => {
           padding: 24,
           minHeight: 280,
           background: colorBgContainer,
+          overflow: "auto",
         }}
       >
         <Button onClick={showModal} type="primary">
@@ -133,7 +135,7 @@ const Product = () => {
               render: (text, record) => (
                 <Space size="middle">
                   <EditOutlined
-                    // onClick={() => onEditUser(record)}
+                    onClick={() => onEditProduct(record)}
                     style={{ color: "yellowgreen" }}
                   />
                   <DeleteOutlined
@@ -150,6 +152,13 @@ const Product = () => {
           isModalOpen={isModalOpen}
           handleCancel={handleCancel}
           onFinish={onFinish}
+        />
+        <EditProduct
+          isEditing={isEditing}
+          editingProduct={editingProduct}
+          resetEditing={resetEditing}
+          setEditingProduct={setEditingProduct}
+          saveEditingProduct={saveEditingProduct}
         />
       </Content>
     </>
