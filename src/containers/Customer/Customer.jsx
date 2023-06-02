@@ -39,11 +39,13 @@ const Customer = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
   const customersStore = useSelector((state) => state.customers);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch.customers.fetchCustomers();
   }, [dispatch.customers]);
+
   return (
     <>
       <Helmet>

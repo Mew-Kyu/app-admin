@@ -70,6 +70,7 @@ export const ProfitChart = () => {
               <Cell
                 key={`cell-${index}`}
                 fill={datum.uv > 0 ? "#4FB5C9" : "#F05D5E"}
+                radius={[10, 10, 0, 0]}
               />
             ))}
           </Bar>

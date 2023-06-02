@@ -12,15 +12,12 @@ const layout = {
 const validateMessages = {
   /* eslint-disable no-template-curly-in-string */
   required: "${label} is required!",
-  types: {
-    email: "${label} is not a valid email!",
-  },
 };
 
-export const AddUser = ({ isModalOpen, handleCancel, onFinish }) => {
+export const AddProduct = ({ isModalOpen, handleCancel, onFinish }) => {
   return (
     <Modal
-      title="Add a new user:"
+      title="Add a new product:"
       open={isModalOpen}
       footer={null}
       onCancel={handleCancel}
@@ -35,8 +32,20 @@ export const AddUser = ({ isModalOpen, handleCancel, onFinish }) => {
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "username"]}
-          label="Username"
+          name={["product", "title"]}
+          label="Product Title"
+          rules={[
+            {
+              required: true,
+              types: "number",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name={["product", "price"]}
+          label="Price"
           rules={[
             {
               required: true,
@@ -46,19 +55,8 @@ export const AddUser = ({ isModalOpen, handleCancel, onFinish }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name={["user", "password"]}
-          label="Password"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name={["user", "name"]}
-          label="Name"
+          name={["product", "category"]}
+          label="Category"
           rules={[
             {
               required: true,
@@ -68,20 +66,8 @@ export const AddUser = ({ isModalOpen, handleCancel, onFinish }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name={["user", "email"]}
-          label="Email"
-          rules={[
-            {
-              type: "email",
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name={["user", "address"]}
-          label="Address"
+          name={["product", "image"]}
+          label="Image Link"
           rules={[
             {
               required: true,
@@ -91,8 +77,8 @@ export const AddUser = ({ isModalOpen, handleCancel, onFinish }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name={["user", "phone"]}
-          label="Phone Number"
+          name={["product", "description"]}
+          label="Description"
           rules={[
             {
               required: true,
