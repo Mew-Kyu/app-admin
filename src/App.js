@@ -9,16 +9,8 @@ import Coupon from 'containers/Coupon';
 import NotFound from 'containers/404';
 import { Routes, Route } from "react-router-dom";
 import { PrimaryLayout } from 'components/Layout';
+import Login from 'containers/Login';
 function App() {
-  // return useRoutes([
-  //   { path: "/", element: <Dashboard />,},
-  //   { path: "/user", element: <UserPage />,},
-  //   { path: "/customer", element: <Customer />,},
-  //   { path: "/product", element: <Product />,},
-  //   { path: "/order", element: <Order />,},
-  //   { path: "/coupon", element: <Coupon />,},
-  //   { path: "*", element: <NotFound />}
-  // ]);
   return (
     <Routes>
       <Route path="/" element={<PrimaryLayout />}>
@@ -30,6 +22,7 @@ function App() {
         <Route path="coupon" element={<Coupon />} />
         <Route path="*" element={<NotFound />} />
       </Route>
+      <Route path='/login' element={<Login />} />
     </Routes>
   );
 }

@@ -37,7 +37,6 @@ export const AddProduct = ({ isModalOpen, handleCancel, onFinish }) => {
           rules={[
             {
               required: true,
-              types: "number",
             },
           ]}
         >

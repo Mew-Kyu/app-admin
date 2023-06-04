@@ -1,52 +1,28 @@
 const data = [
   {
-    id: "1",
-    billid: "XYZ",
-    email: "johnbrown@gmail.com",
-    status: ["success"],
+    code: "DIS50",
+    description: "Discount 50% for smartphone",
   },
   {
-    id: "2",
-    billid: "MNZ",
-    email: "tanya@gmail.com",
-    status: ["pending"],
+    code: "DIS70",
+    description: "Discount 70% for clothes",
   },
   {
-    id: "3",
-    billid: "DFD",
-    email: "onichichi@gmail.com",
-    status: ["pending"],
-  },
-  {
-    id: "4",
-    billid: "FSD",
-    email: "songoky.com",
-    status: ["cancelled"],
-  },
-  {
-    id: "5",
-    billid: "DSA",
-    email: "bladeshark@gmail.com",
-    status: ["success"],
-  },
-  {
-    id: "6",
-    billid: "VCX",
-    email: "enterboi@gmail.com",
-    status: ["success"],
+    code: "DIS30",
+    description: "Discount 30% for all product",
   },
 ];
 
-export const orders = {
+export const coupons = {
   state: {
-    listOrder: data,
+    listCoupon: data,
   }, // initial state
   reducers: {
     // handle state changes with pure functions
-    setListOrder(state, listOrder) {
+    setListCoupon(state, listCoupon) {
       return {
         ...state,
-        listOrder,
+        listCoupon,
       };
     },
     setCount(state, count) {
