@@ -7,17 +7,24 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
   ThunderboltOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 const { Header, Sider } = Layout;
 
 const PrimaryLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const loggedinUser = useSelector((state) => state.auth);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <Layout
       style={{
@@ -25,7 +32,23 @@ const PrimaryLayout = () => {
       }}
     >
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical"></div>
+        <div
+          className="demo-logo-vertical"
+          style={{
+            color: "grey",
+            display: "flex",
+            justifyContent: " center",
+            alignItems: "center",
+            height: "100px",
+            fontSize: "25px",
+            fontWeight: "bold",
+            fontStyle: "italic",
+            textShadow: "0px 8px 10px #000000",
+            opacity: 0.6,
+          }}
+        >
+          App-Admin
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -93,6 +116,9 @@ const PrimaryLayout = () => {
           style={{
             padding: 0,
             background: colorBgContainer,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <Button
@@ -105,6 +131,17 @@ const PrimaryLayout = () => {
               height: 64,
             }}
           />
+          <div
+            style={{
+              marginRight: "10%",
+              color: "GrayText",
+              fontSize: "25px",
+              fontWeight: "bold",
+            }}
+          >
+            Welcome, {loggedinUser.username}!
+            <LogoutOutlined style={{ paddingLeft: "20px" }} onClick={logOut} />
+          </div>
         </Header>
         <Outlet />
       </Layout>
