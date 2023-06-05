@@ -116,7 +116,9 @@ const Order = () => {
             style={{
               width: "100%",
             }}
-            // onChange={handleChange}
+            onChange={
+              (value) => setUpdateOrder({ ...updateOrder, status: [value] }) // Update the status in the updateOrder state
+            }
             options={[
               {
                 value: "success",
